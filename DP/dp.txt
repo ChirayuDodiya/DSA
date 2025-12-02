@@ -1,0 +1,5 @@
+1.express everything in terms of index
+
+2.write core logic how values changes with index changes
+
+3.if there is overlapping problems,apply dp
