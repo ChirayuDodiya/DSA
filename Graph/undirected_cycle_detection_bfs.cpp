@@ -2,21 +2,27 @@
 using namespace std;
 
 // Undirected Graph Cycle Detection (BFS)
-bool bfs(int src, vector<int> adj[], vector<bool> &visited) {
+bool bfs(int src, vector<int> adj[], vector<bool> &visited)
+{
     queue<pair<int, int>> q;
     q.push({src, -1});
     visited[src] = true;
 
-    while (!q.empty()) {
+    while (!q.empty())
+    {
         int node = q.front().first;
         int parent = q.front().second;
         q.pop();
 
-        for (int nbr : adj[node]) {
-            if (!visited[nbr]) {
+        for (int nbr : adj[node])
+        {
+            if (!visited[nbr])
+            {
                 visited[nbr] = true;
                 q.push({nbr, node});
-            } else if (nbr != parent) {
+            }
+            else if (nbr != parent)
+            {
                 return true;
             }
         }
@@ -24,7 +30,8 @@ bool bfs(int src, vector<int> adj[], vector<bool> &visited) {
     return false;
 }
 
-int main() {
+int main()
+{
     int V = 5; // Number of vertices
     vector<int> adj[V];
 
@@ -48,9 +55,12 @@ int main() {
     vector<bool> visited(V, false);
     bool hasCycle = false;
 
-    for (int i = 0; i < V; i++) {
-        if (!visited[i]) {
-            if (bfs(i, adj, visited)) {
+    for (int i = 0; i < V; i++)
+    {
+        if (!visited[i])
+        {
+            if (bfs(i, adj, visited))
+            {
                 hasCycle = true;
                 break;
             }

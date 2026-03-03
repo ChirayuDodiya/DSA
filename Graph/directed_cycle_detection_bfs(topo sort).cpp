@@ -2,7 +2,8 @@
 using namespace std;
 
 // Directed Graph Cycle Detection (BFS - Kahn’s Algorithm)
-bool isCyclic(int V, vector<int> adj[]) {
+bool isCyclic(int V, vector<int> adj[])
+{
     vector<int> indegree(V, 0);
     for (int i = 0; i < V; i++)
         for (int nbr : adj[i])
@@ -14,11 +15,14 @@ bool isCyclic(int V, vector<int> adj[]) {
             q.push(i);
 
     int count = 0;
-    while (!q.empty()) {
-        int node = q.front(); q.pop();
+    while (!q.empty())
+    {
+        int node = q.front();
+        q.pop();
         count++;
 
-        for (int nbr : adj[node]) {
+        for (int nbr : adj[node])
+        {
             indegree[nbr]--;
             if (indegree[nbr] == 0)
                 q.push(nbr);
@@ -28,14 +32,15 @@ bool isCyclic(int V, vector<int> adj[]) {
     return count != V; // If not all nodes processed, cycle exists
 }
 
-int main() {
+int main()
+{
     int V = 4; // Number of vertices
     vector<int> adj[V];
 
     // Example Graph 1 (with cycle)
     // 0 → 1 → 2
-    //      ↑   ↓
-    //      ←---3
+    //     ↑   ↓
+    //     ←---3
     adj[0].push_back(1);
     adj[1].push_back(2);
     adj[2].push_back(3);

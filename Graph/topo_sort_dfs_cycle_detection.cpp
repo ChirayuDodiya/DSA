@@ -1,13 +1,19 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-//topological sort with cycle detection (dfs based)
-bool dfs(int node, vector<vector<int>>& adj, vector<int>& visited, vector<int>& result) {
+// topological sort with cycle detection (dfs based)
+bool dfs(int node, vector<vector<int>> &adj, vector<int> &visited, vector<int> &result)
+{
     visited[node] = 1; // 1 = currently in recursion stack
 
-    for (int nbr : adj[node]) {
-        if (visited[nbr] == 0) {
-            if (!dfs(nbr, adj, visited, result)) return false;
-        } else if (visited[nbr] == 1) {
+    for (int nbr : adj[node])
+    {
+        if (visited[nbr] == 0)
+        {
+            if (!dfs(nbr, adj, visited, result))
+                return false;
+        }
+        else if (visited[nbr] == 1)
+        {
             // back edge → cycle
             return false;
         }
@@ -18,12 +24,16 @@ bool dfs(int node, vector<vector<int>>& adj, vector<int>& visited, vector<int>& 
     return true;
 }
 
-bool topoSortDFS(int V, vector<vector<int>>& adj, vector<int>& result) {
+bool topoSortDFS(int V, vector<vector<int>> &adj, vector<int> &result)
+{
     vector<int> visited(V, 0); // 0 = unvisited, 1 = visiting, 2 = visited
 
-    for (int i = 0; i < V; i++) {
-        if (visited[i] == 0) {
-            if (!dfs(i, adj, visited, result)) {
+    for (int i = 0; i < V; i++)
+    {
+        if (visited[i] == 0)
+        {
+            if (!dfs(i, adj, visited, result))
+            {
                 return false; // cycle detected
             }
         }
@@ -33,7 +43,8 @@ bool topoSortDFS(int V, vector<vector<int>>& adj, vector<int>& result) {
     return true;
 }
 
-int main() {
+int main()
+{
     int V = 6;
     vector<vector<int>> adj = {
         {2, 3}, // 0 -> 2,3
@@ -45,10 +56,14 @@ int main() {
     };
 
     vector<int> result;
-    if (topoSortDFS(V, adj, result)) {
+    if (topoSortDFS(V, adj, result))
+    {
         cout << "Topological Order: ";
-        for (int x : result) cout << x << " ";
-    } else {
+        for (int x : result)
+            cout << x << " ";
+    }
+    else
+    {
         cout << "Cycle detected!";
     }
 }

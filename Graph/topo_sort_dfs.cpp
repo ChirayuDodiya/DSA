@@ -2,10 +2,13 @@
 using namespace std;
 
 // DFS helper for Topological Sort
-void dfsTopo(int node, vector<bool>& visited, stack<int>& st, vector<vector<int>>& adj) {
+void dfsTopo(int node, vector<bool> &visited, stack<int> &st, vector<vector<int>> &adj)
+{
     visited[node] = true;
-    for (int nbr : adj[node]) {
-        if (!visited[nbr]) {
+    for (int nbr : adj[node])
+    {
+        if (!visited[nbr])
+        {
             dfsTopo(nbr, visited, st, adj);
         }
     }
@@ -13,23 +16,28 @@ void dfsTopo(int node, vector<bool>& visited, stack<int>& st, vector<vector<int>
 }
 
 // Topological Sort (DFS based)
-vector<int> topoSortDFS(int V, vector<vector<int>>& adj) {
+vector<int> topoSortDFS(int V, vector<vector<int>> &adj)
+{
     vector<bool> visited(V, false);
     stack<int> st;
-    for (int i = 0; i < V; i++) {
-        if (!visited[i]) {
+    for (int i = 0; i < V; i++)
+    {
+        if (!visited[i])
+        {
             dfsTopo(i, visited, st, adj);
         }
     }
     vector<int> topo;
-    while (!st.empty()) {
+    while (!st.empty())
+    {
         topo.push_back(st.top());
         st.pop();
     }
     return topo;
 }
 
-int main() {
+int main()
+{
     int V = 6;
     vector<vector<int>> adj(V);
 
@@ -48,7 +56,8 @@ int main() {
     vector<int> topo = topoSortDFS(V, adj);
 
     cout << "Topological Order (DFS-based): ";
-    for (int node : topo) cout << node << " ";
+    for (int node : topo)
+        cout << node << " ";
     cout << endl;
 
     return 0;
