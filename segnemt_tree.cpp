@@ -2,7 +2,7 @@
 left child=>2x+1
 right child=>2x+2
 
-3 condition:
+3 condition: if for desired range, the current range:
 completly lies      ->return that value directly
 overlaps            ->both direction
 doesn't lies        ->return the value that will not contribure in our answer
