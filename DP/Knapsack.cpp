@@ -3,6 +3,9 @@ using namespace std;
 
 bool subsetSum2D(vector<int> &arr, int target)
 {
+    //If element can be used:
+    //ONCE → in take, go to next element
+    //MULTIPLE TIMES → in take, go to same element
     int n = arr.size();
 
     vector<vector<bool>> dp(n + 1, vector<bool>(target + 1, false));
@@ -19,7 +22,11 @@ bool subsetSum2D(vector<int> &arr, int target)
             bool take = false;
 
             if (arr[i - 1] <= j)
+            {
+                //in case of unbounded knapsack, use this code
+                // take = dp[i][j - arr[i - 1]];
                 take = dp[i - 1][j - arr[i - 1]];
+            }
 
             dp[i][j] = take || not_take;
         }
@@ -30,11 +37,16 @@ bool subsetSum2D(vector<int> &arr, int target)
 
 bool subsetSum(vector<int> &arr, int target)
 {
+    // If element can be used:
+    // ONCE → iterate backward
+    // MULTIPLE TIMES → iterate forward
     vector<bool> dp(target + 1, false);
     dp[0] = true;
 
     for (int num : arr)
     {
+        // in case of unbounded knapsack, use this code with forward loop
+        // for( int j=num; j<=target; j++) //forward loop
         for (int j = target; j >= num; j--)
         {
             dp[j] = dp[j] || dp[j - num];
