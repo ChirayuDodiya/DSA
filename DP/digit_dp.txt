@@ -1,0 +1,7 @@
+state:
+range: upto 1e9
+
+index: 11
+boolean: tight / bound / flag ->true = restrictions 
+
+for some of the cases one isLeadingZero state is also required

@@ -31,11 +31,11 @@ int maxSumSubmatrix(vector<vector<int>> &mat)
                 temp[i] += mat[i][right];
             }
 
-            for (int i = 0; i < rows; i++)
-            {
-                cout<<temp[i]<<" ";
-            }
-            cout<<endl;
+            // for (int i = 0; i < rows; i++)
+            // {
+            //     cout<<temp[i]<<" ";
+            // }
+            // cout<<endl;
             ans = max(ans, kadane(temp));
         }
     }
